@@ -11,11 +11,6 @@ const routes = [
     component: Downloading
   },
   {
-    path: '/finished',
-    name: 'Finished',
-    component: () => import('../views/Finished.vue')
-  },
-  {
     path: '/settings',
     name: 'Settings',
     component: () => import('../views/Settings.vue')

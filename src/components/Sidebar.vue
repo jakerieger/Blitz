@@ -4,16 +4,11 @@
             <div class="sidebar-menu">
                 <div :class="activateMenuItem == 0 ? 'sidebar-menu-item active' : 'sidebar-menu-item'">
                     <div class="sidebar-menu-item-content" @click="changePage(0)">
-                        <span><i class="mdi mdi-download"></i></span> Downloading
+                        <span><i class="mdi mdi-download"></i></span> Torrents
                     </div>
                 </div>
                 <div :class="activateMenuItem == 1 ? 'sidebar-menu-item active' : 'sidebar-menu-item'">
                     <div class="sidebar-menu-item-content" @click="changePage(1)">
-                        <span><i class="mdi mdi-check"></i></span> Finished
-                    </div>
-                </div>
-                <div :class="activateMenuItem == 2 ? 'sidebar-menu-item active' : 'sidebar-menu-item'">
-                    <div class="sidebar-menu-item-content" @click="changePage(2)">
                         <span><i class="mdi mdi-cog"></i></span> Settings
                     </div>
                 </div>
@@ -48,9 +43,6 @@ export default {
                     this.$router.push('/');
                     break;
                 case 1:
-                    this.$router.push('finished');
-                    break;
-                case 2:
                     this.$router.push('settings');
                     break;
             }

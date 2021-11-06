@@ -1,7 +1,7 @@
 <template>
     <div id="downloading">
         <div class="titlebar">
-            <div class="titlebar-title">Downloading</div>
+            <div class="titlebar-title">Torrents</div>
             <div class="titlebar-buttons">
                 <button class="button secondary">Add Torrent (File)</button>
                 <button class="button primary" @click="showAddTorrentModal = true">Add Torrent (Magnet)</button>
@@ -25,18 +25,24 @@
                     </div>
                     <div class="download-list-content">
                         <div class="download-item-name">
-                            {{download.name}} <span class="download-status">downloading</span>
+                            {{download.name}} <span class="download-status">{{ download.done ? 'seeding' : 'downloading' }}</span>
                         </div>
                         <div class="download-item-path">
                             {{download.path}}{{download.name}}
                         </div>
-                        <ProgressBar v-if="download.ready" :progress="(download.downloaded / download.length) * 100.0" status="downloading"/>
+                        <ProgressBar v-if="download.ready" :progress="(download.downloaded / download.length) * 100.0" :status="download.done ? 'seeding' : 'downloading'"/>
                         <div class="download-item-details">
-                            <div class="detail-item" v-if="download.ready" id="total-size">
-                                {{formatFileSize(download.downloaded)}} / {{formatFileSize(download.length)}}
+                            <div class="detail-item" v-if="download.ready && !download.done" id="total-size">
+                                {{formatFileSize(download.downloaded)}} / 
+                                {{formatFileSize(download.length)}} | 
+                                {{(download.downloadSpeed / 1000000.0).toFixed(2)}} MB/s | 
+                                {{download.numPeers}} Peers
                             </div>
-                            <div class="detail-item" id="total-size" v-else>
+                            <div class="detail-item" id="total-size" v-else-if="!download.ready && !download.done">
                                 {{ download.numPeers }} Peers
+                            </div>
+                            <div class="detail-item" id="total-size" v-else-if="download.done && download.uploaded != 0">
+                                {{ formatFileSize(download.uploaded) }}
                             </div>
                         </div>
                     </div>
@@ -171,6 +177,7 @@ export default {
     border: 1px solid #313131;
     border-radius: 10px;
     width: 100%;
+    padding: 6px;
     /* width: 60px; */
 }
 

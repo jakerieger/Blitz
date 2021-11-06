@@ -1,24 +1,17 @@
-# blitz
+# Blitz
 
-## Project setup
-```
-yarn install
-```
+Blitz is a simple desktop torrent client for Windows and macOS.
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+![](screenshot.png)
 
-### Compiles and minifies for production
-```
-yarn build
-```
+### Building
 
-### Lints and fixes files
+To build Blitz, you'll need Node, NPM or Yarn, and the Vue CLI installed. You can run:
 ```
-yarn lint
+$ yarn electron:serve
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+to open the app in debug mode or run:
+```
+$ yarn electron:build
+```
+to build an executable.

@@ -1,24 +1,23 @@
 <template>
     <div id="modal" :style="{ opacity: visible ? '1.0' : '0.0', 'z-index': visible ? '50' : '-10' }">
-        <div class="modal-bg">
-            <div class="modal-content-container">
-                <div class="modal-content">
-                    <div class="modal-close-button">
-                        <button class="button modal-close" @click="closeCallback()">
-                            <i class="mdi mdi-close"></i>
-                        </button>
-                    </div>
-                    <div class="modal-title" v-if="hasTitle">
-                        {{title}}
-                    </div>
-                    <div class="modal-body">
-                        <div class="modal-prompt">{{prompt}}</div>
-                        <input v-if="type == 'input'" :placeholder="inputPlaceholder" v-model="inputText" @change="inputValueChanged">
-                    </div>
-                    <div class="modal-buttons">
-                        <button class="button primary" @click="callback()">{{confirmText}}</button>
-                        <button class="button secondary" @click="closeCallback()">Cancel</button>
-                    </div>
+        <div class="modal-bg"></div>
+        <div class="modal-content-container">
+            <div class="modal-content">
+                <div class="modal-close-button">
+                    <button class="button modal-close" @click="closeCallback()">
+                        <i class="mdi mdi-close"></i>
+                    </button>
+                </div>
+                <div class="modal-title" v-if="hasTitle">
+                    {{title}}
+                </div>
+                <div class="modal-body">
+                    <div class="modal-prompt">{{prompt}}</div>
+                    <input v-if="type == 'input'" :placeholder="inputPlaceholder" v-model="inputText" @change="inputValueChanged">
+                </div>
+                <div class="modal-buttons">
+                    <button class="button primary" @click="callback()">{{confirmText}}</button>
+                    <button class="button secondary" @click="closeCallback()">Cancel</button>
                 </div>
             </div>
         </div>
@@ -62,12 +61,11 @@ export default {
 
 .modal-content-container {
     display: flex;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     justify-content: center;
     align-items: center;
     z-index: 100;
-    background: none;
 }
 
 .modal-content {
@@ -118,8 +116,8 @@ export default {
     width: 100vw;
     height: 100vh;
     background: #000;
-    z-index: 99;
     opacity: 0.7;
+    position: fixed;
 }
 
 .modal-close-button {
